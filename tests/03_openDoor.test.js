@@ -1,7 +1,7 @@
 const { openDoor } = require('../03_openDoor');
 
 function makeItem(name, hasCoffee) {
-  item = new Object();
+  item = {};
   item.name = name;
   item.hasCoffee = hasCoffee;
   return item;

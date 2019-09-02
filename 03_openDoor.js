@@ -19,8 +19,12 @@ npm test
 */
 
 function openDoor(input) {
-  // Your code here
+  return input.reduce(
+    (passed, item) => passed || (item.name === 'Simon' && item.hasCoffee),
+    false,
+  );
 }
+
 module.exports = {
   openDoor,
 };
