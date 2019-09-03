@@ -79,45 +79,52 @@ const drinkShop = {
   },
 };
 const shop = {
-  shopTitle: () => {
-    // Return the shop title (you have access to the shop object from here)
-  },
+  // Return the shop title (you have access to the shop object from here)
+  shopTitle: () => drinkShop.title,
 
-  upperCase: (string) => {
-    // Return an uppercase version of string
-  },
+  // Return an uppercase version of string
+  upperCase: (string) => string.toUpperCase(),
 
-  upperCaseShopTitle: () => {
-    // Return an uppercase shop title.
-    // Don't repeat yourself. Use the two functions you just built!
-  },
+  // Return an uppercase shop title.
+  upperCaseShopTitle: () => shop.upperCase(shop.shopTitle()),
 
-  productById: (productId) => {
-    // Return a specific product object
-  },
+  // Return a specific product object
+  productById: (productId) => drinkShop.products
+    .find((product) => product.id === productId),
 
-  productCost: (productId) => {
-    // given a product id, return its cost. DRY ;)
-  },
+  // given a product id, return its cost. DRY ;)
+  productCost: (productId) => shop.productById(productId).price,
 
+  // return(drinkShop.customers.'jane@doe.com'.address.(streetNumber, street, city, postcode))
+  // Given a user's email, return their address in the format:
+  // streetNumber street, city, postcode
+  // E.g. 10 Amelia St, Sydney, 2000
   formatAddress: (email) => {
-    // return(drinkShop.customers.'jane@doe.com'.address.(streetNumber, street, city, postcode))
-    // Given a user's email, return their address in the format:
-    // streetNumber street, city, postcode
-    // E.g. 10 Amelia St, Sydney, 2000
-    // Hint: some destructuring might save you a few lines.
+    const {
+      streetNumber, street, city, postcode,
+    } = drinkShop.customers[email].address;
+    return `${streetNumber} ${street}, ${city}, ${postcode}`;
   },
 
+  // Return the total cost of an order.
   totalCost: (email, orderId) => {
-    // Return the total cost of an order.
+    const order = drinkShop.customers[email].orders
+      .find((ord) => ord.id === orderId);
+    return order.items
+      .reduce(((total, item) => total + (shop.productCost(item.productId) * item.qty)), 0);
   },
 
+  // Add a product to the shop.
   addProduct: (id, title, price) => {
-    // Add a product to the shop.
+    drinkShop.products.push({ id, title, price });
+    return true;
   },
 
+  // Update the price of a specific product
   updateProductPrice: (id, newPrice) => {
-    // Update the price of a specific product
+    console.log('id', id);
+    shop.productById(id).price = newPrice;
+    return true;
   },
 };
 
