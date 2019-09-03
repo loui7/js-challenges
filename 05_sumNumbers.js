@@ -4,7 +4,11 @@
 // npm test
 
 function findWinner(players) {
-  // Your code here
+  return players.reduce((winner, p) => {
+    const player = p;
+    player.totalScore = p.scores.reduce((total, score) => total + score, 0);
+    return winner.totalScore < player.totalScore ? player : winner;
+  }, { totalScore: 0 }).name;
 }
 
 module.exports = {
