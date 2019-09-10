@@ -3,6 +3,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "glob": "^7.1.4",
     "lodash": "^4.17.15"
   }
 }
