@@ -20,24 +20,35 @@
     body {
       text-align: center;
     }
+    input {
+      padding: 5px;
+    }
     </style>
   </head>
 
   <body>
 
-    <p><input type="text" placeholder="Enter your name"></p>
+    <p>
+      <input type="text" placeholder="Enter your first name">
+      <input type="text" placeholder="Enter your last name">
+    </p>
 
     <h1></h1>
 
   </body>
 
   <script>
-  const name = document.querySelector('input')
+  const names = document.querySelectorAll('input')
   const welcomeMessage = document.querySelector('h1')
-  name.onkeyup = function () {
-    // hint: name.value gives you the current text in the input box
-    welcomeMessage.textContent = `Welcome, ${name.value}!`;
+
+  function renderName() {
+    const fullName = names[0].value + ' ' + names[1].value;
+    welcomeMessage.textContent = fullName !== ' ' ? `Welcome, ${fullName.toUpperCase()}!` : '';
   }
+
+  names.forEach((name) => {
+    name.onkeyup = renderName
+  })
   </script>
 
 </html>
