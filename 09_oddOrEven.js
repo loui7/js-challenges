@@ -9,7 +9,11 @@ If the input array is empty consider it as: [0] (array with a zero).
 */
 
 function oddOrEven(array) {
-    //enter code here
+  const total = array.reduce((tot, num) => (tot + num), 0);
+  return total % 2 === 0 ? 'even' : 'odd';
 }
 
-module.exports = {oddOrEven};
+// console.log(oddOrEven([1023, 1, 2]));
+// .toBe('even')
+
+module.exports = { oddOrEven };
