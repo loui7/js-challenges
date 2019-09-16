@@ -1,4 +1,4 @@
-const binarySearch = require('./07_binarySearch').binarySearch;
+const binarySearch = require('../07_binarySearch').binarySearch;
 
 describe('Count loops', function () {
     test('Should count one step when search values is in the middle', function () {
