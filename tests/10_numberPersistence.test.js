@@ -1,4 +1,4 @@
-const { persistence } = require('./10_numberPersistence');
+const { persistence } = require('../10_numberPersistence');
 
 describe('Initial Tests', () => {
   test('Should return 3 steps for 39', () => {
