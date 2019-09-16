@@ -11,8 +11,19 @@ persistence(999) === 4
 Because 9*9*9 = 729, 7*2*9 = 126, 1*2*6 = 12, and 1*2 = 2
 */
 
+function getDigitArr(num) {
+  return String(num).split('').map((digit) => Number(digit));
+}
+
 function persistence(num) {
-  // enter code here
+  let digits = getDigitArr(num);
+  let counter = 0;
+  while (digits.length > 1) {
+    counter += 1;
+    const newDigits = digits.reduce((tot, dig) => (tot * dig));
+    digits = getDigitArr(newDigits);
+  }
+  return counter;
 }
 
 module.exports = {
